@@ -1,0 +1,75 @@
+
+body {
+font-family: "Lato", sans-serif;
+font-size: 20px;
+color: white;
+margin: 0;
+}
+
+.navbar-brand{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.headline-header{
+font-family: "Lato", sans-serif;
+font-size: 36px;
+font-weight: 800;
+color: white;
+font-style: normal;
+}
+
+nav.navbar.my-header-color {
+background-color: rgb(255 152 0 / 87%) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+    background-color: #4e4c4c;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .footer-limit {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .logo-footer {
+    background-size: cover;
+    height: 46px;
+    color: white;
+  }
+
+  .logo-footer:hover{
+    transform: scale(1.2);
+  }
+
+  .img-footer {
+    height: 50px;
+  }
+
+  .img-footer-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+  }
