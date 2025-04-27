@@ -11,25 +11,30 @@ function init() {
 }
 
 function renderDishes() {
-    let contentRef = document.getElementById('content-wrapper');
-    contentRef.innerHTML = "";
-    contentRef.innerHTML += getRestaurantTemplate();
+    const contentRef = document.getElementById('content-wrapper');
+    contentRef.innerHTML = getRestaurantTemplate();
 
     for (let category in myRestaurant.menu) {
         contentRef.innerHTML += getMenuTemplate(category, myRestaurant.menu[category]);
     }
 
-      let dishes = document.getElementsByClassName('dish');
-      for (let i = 0; i < dishes.length; i++) {
-          dishes[i].addEventListener('click', function () {
-              let name = this.querySelector('h4').innerText;
-              let priceText = this.querySelector('.dish-price').innerText;
-              let price = parseFloat(priceText.replace('€', '').replace(',', '.'));
-  
-              addToCart(name, price);
-          });
-      }
-  }
+    attachDishEventListeners();
+}
+
+function attachDishEventListeners() {
+    const dishes = document.getElementsByClassName('dish');
+
+    for (let i = 0; i < dishes.length; i++) {
+        dishes[i].addEventListener('click', function () {
+            const name = this.querySelector('h4').innerText;
+            const priceText = this.querySelector('.dish-price').innerText;
+            const price = parseFloat(priceText.replace('€', '').replace(',', '.'));
+
+            addToCart(name, price);
+        });
+    }
+}
+
 
   function addToCart(name, price) {
     let found = false;
@@ -178,6 +183,31 @@ function renderMobileCart() {
         for (let i = 0; i < cart.length; i++) {
             container.innerHTML += getMobileCartItemTemplate(cart[i], i);
         }
+    }
+}
+
+function placeOrder() {
+    if (cart.length === 0) {
+        alert('Warenkorb leer! Bitte füge deine Lieblingsgerichte hinzu.');
+        return; 
+    }
+
+    cart = [];
+    renderCart();
+    renderMobileCart();
+    updateMobileCartTotal();
+    updateMobileCartSummary();
+
+    const confirmationHTML = getOrderConfirmationMessage();
+
+    const mobileOverlay = document.getElementById('mobile-cart-overlay');
+    if (mobileOverlay) {
+        mobileOverlay.innerHTML += confirmationHTML;
+    }
+
+    const desktopOverlay = document.getElementById('overlay');
+    if (desktopOverlay) {
+        desktopOverlay.innerHTML += confirmationHTML;
     }
 }
 

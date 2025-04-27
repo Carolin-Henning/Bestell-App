@@ -125,6 +125,7 @@ function getCartHeaderAndSummaryTemplate(subtotal, deliveryCost, total) {
                 <strong>${total.toFixed(2)} €</strong>
             </div>
         </div>
+        <button id="order-button-desktop" onclick="placeOrder()" class="order-button">Bestellen</button>
     `;
 }
 
@@ -142,7 +143,16 @@ function getMobileCartHTML() {
                 </div>
                 <div id="mobile-cart-items" class="mobile-cart-items"></div>
                 <div class="cart-summary mobile-cart-summary"></div>
+                <button id="order-button" onclick="placeOrder()" class="order-button">Bestellen</button>
             </div>
+        </div>
+    `;
+}
+
+function getOrderConfirmationMessage() {
+    return `
+        <div class="order-confirmation-message">
+            <p>Testbestellung erfolgreich!<br> Vielen Dank für Ihre Bestellung.</p>
         </div>
     `;
 }
